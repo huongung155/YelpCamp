@@ -23,7 +23,7 @@ var campgroundRoutes = require('./routes/campgrounds'),
 // assign mongoose promise library and connect to database
 mongoose.Promise = global.Promise;
 
-const databaseUri = process.env.MONGODB_URI || 'mongodb://localhost/test';
+const databaseUri = process.env.MONGODB_URI || 'mongodb://huongung155:chuabiet155@ds051368.mlab.com:51368/yelpcamp';
 
 mongoose.connect(databaseUri, { useMongoClient: true }).then(() => console.log('Database connected')).catch(err => console.log('Database connection error: ${err.message}'));
 

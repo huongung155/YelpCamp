@@ -1,0 +1,85 @@
+/*https://github.com/nax3t/background-slider
+
+https://mphcmiuedu-my.sharepoint.com/personal/ititiu15033_student_hcmiu_edu_vn/_layouts/15/guestaccess.aspx?docid=13e33a332269548a19724075a305ef6e6&authkey=AV3dlIN9SRxCZIFm4_uq6jc&e=979cd9e476344f5c8de5230878d2fa2b*/
+body {
+    background-color: #000;
+}
+
+#landing-header {
+    z-index: 1;
+    position: relative;
+    text-align: center;
+    padding-top: 40vh;
+}
+
+#landing-header h1 {
+    color: #fff;
+}
+
+.slideshow {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.slideshow li {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    opacity: 0;
+    z-index: 0;
+    animation: imageAnimation 50s linear infinite;
+}
+
+.slideshow li:nth-child(1) {
+    background-image: url(http://i.imgur.com/K3mPv14.jpg)
+}
+.slideshow li:nth-child(2) {
+    background-image: url(http://i.imgur.com/SBEmFpv.jpg);
+    animation-delay: 10s;/*start animation from second #10*/
+}
+.slideshow li:nth-child(3) {
+    background-image: url(http://i.imgur.com/emvhOnb.jpg);
+    animation-delay: 20s;/*start animation from second #20*/
+}
+.slideshow li:nth-child(4) {
+    background-image: url(http://i.imgur.com/2LSMCmJ.jpg);
+    animation-delay: 30s;/*start animation from second #30*/
+}
+.slideshow li:nth-child(5) {
+    background-image: url(http://i.imgur.com/TVGe0Ef.jpg);
+    animation-delay: 40s;/*start animation from second #40*/
+}
+
+@keyframes imageAnimation {
+    0% {
+        opacity: 0;
+        animation-timing-function: ease-in;
+    }
+    10% {
+        opacity: 1;
+        animation-timing-function: ease-out;
+    }
+    20% {
+        opacity: 1
+    }
+    30% {
+        opacity: 0
+    }
+}
+
+/* Older browser support - .no-cssanimations class added by modernizr */
+.no-cssanimations .slideshow li {
+    opacity: 1;
+}

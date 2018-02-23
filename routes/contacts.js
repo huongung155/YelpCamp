@@ -17,7 +17,7 @@ router.post('/send', function (req, res) {
         request.get(verifyURL, (err, response, body) => {
             //if not successful
             if(body.success !== undefined && !body.success){
-                req.flash('error', 'Captcha Failed');
+                req.flash('error', err.message);
                 return res.redirect('back');
             }
             var smtpTransport = nodemailer.createTransport({
@@ -37,7 +37,7 @@ router.post('/send', function (req, res) {
             };
             smtpTransport.sendMail(mailOptions, function (err) {
                 if(err){
-                    req.flash("error", "Something went wrong... Please try again later!");
+                    req.flash("error", err.message);
                     res.redirect("back");
                 }else{
                     req.flash("success", "Your email has been sent, we will respond within 24 hours.");

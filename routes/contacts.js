@@ -17,14 +17,14 @@ router.post('/send', function (req, res) {
         request.get(verifyURL, (err, response, body) => {
             //if not successful
             if(body.success !== undefined && !body.success){
-                req.flash('error', err.message);
+                req.flash('error', 'Body Undefined');
                 return res.redirect('back');
             }
             var smtpTransport = nodemailer.createTransport({
                 service: 'Gmail',
                 auth:{
                     user: 'haanh16091997@gmail.com',
-                    pass: 'chuabiet155'
+                    pass: process.env.GMAILPW
                 }
             });
             var mailOptions = {
@@ -37,7 +37,7 @@ router.post('/send', function (req, res) {
             };
             smtpTransport.sendMail(mailOptions, function (err) {
                 if(err){
-                    req.flash("error", err.message);
+                    req.flash("error", 'smtpTransport failed');
                     res.redirect("back");
                 }else{
                     req.flash("success", "Your email has been sent, we will respond within 24 hours.");

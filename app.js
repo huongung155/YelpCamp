@@ -58,7 +58,7 @@ app.use(function(req, res, next){
 
 app.use('/campgrounds', campgroundRoutes);//all link in router.get() starts by /campgrounds
 app.use('/campgrounds/:id/comments', commentRoutes);
-app.use('/contacts', contactRoutes),
+app.use('/contacts', contactRoutes);
 app.use('/', indexRoutes);
 
 module.exports = app;

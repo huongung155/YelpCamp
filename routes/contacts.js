@@ -18,7 +18,7 @@ router.post('/send', function (req, res) {
             //if not successful
             if(body.success !== undefined && !body.success){
                 req.flash('error', 'Captcha Failed');
-                return res.redirect('/contact');
+                return res.redirect('back');
             }
             var smtpTransport = nodemailer.createTransport({
                 service: 'Gmail',
@@ -38,7 +38,7 @@ router.post('/send', function (req, res) {
             smtpTransport.sendMail(mailOptions, function (err) {
                 if(err){
                     req.flash("error", "Something went wrong... Please try again later!");
-                    res.redirect("/contact");
+                    res.redirect("back");
                 }else{
                     req.flash("success", "Your email has been sent, we will respond within 24 hours.");
                     res.redirect("/campgrounds");

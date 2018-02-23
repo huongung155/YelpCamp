@@ -21,11 +21,10 @@ router.post('/send', function (req, res) {
                 return res.redirect('back');
             }
             var smtpTransport = nodemailer.createTransport({
-                host: 'smtp.gmail.com',
-                port: 465,
+                service: 'Gmail',
                 auth:{
                     user: 'haanh16091997@gmail.com',
-                    pass: process.env.GMAILPW
+                    pass: 'chuabiet155'
                 }
             });
             var mailOptions = {

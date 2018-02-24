@@ -1,7 +1,8 @@
 var express = require('express'),
     router = express.Router(),
     nodemailer = require('nodemailer'),
-    request = require('request');
+    request = require('request'),
+    ses = require('nodemailer-ses-transport');
 
 //contact form
 router.get('/', function (req, res) {
@@ -20,19 +21,10 @@ router.post('/send', function (req, res) {
                 req.flash('error', 'Body Undefined');
                 return res.redirect('back');
             }
-            var smtpTransport = nodemailer.createTransport({
-                host: 'smtp.gmail.com',
-                port: 465,
-                secure: true,
-                auth:{
-                    user: 'haanh16091997@gmail.com',
-                    pass: 'chuabiet155'
-                },
-                tls: {
-                    // do not fail on invalid certs
-                    rejectUnauthorized: false
-                }
-            });
+            var smtpTransport = nodemailer.createTransport(ses({
+                accessKeyId: process.env.AMAZON_KEY,
+                secretAccessKey: process.env.AMAZON_SECRET_KEY
+            }));
             var mailOptions = {
                 from: 'haanh16091997@gmail.com',
                 to: 'huongung155@gmail.com',
@@ -43,7 +35,7 @@ router.post('/send', function (req, res) {
             };
             smtpTransport.sendMail(mailOptions, function (err) {
                 if(err){
-                    req.flash("error", 'smtpTransport failed');
+                    req.flash("error", err.stack);
                     res.redirect("back");
                 }else{
                     req.flash("success", "Your email has been sent, we will respond within 24 hours.");
